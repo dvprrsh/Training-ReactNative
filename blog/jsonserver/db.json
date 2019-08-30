@@ -1,5 +1,5 @@
 {
-  "blogposts": [
+  "blogPosts": [
     {
       "id": 1,
       "title": "API",
@@ -11,7 +11,7 @@
       "id": 2
     },
     {
-      "title": "Hi 2",
+      "title": "Hi there",
       "content": "there ",
       "id": 3
     },
@@ -19,16 +19,6 @@
       "title": "Howdy",
       "content": "",
       "id": 4
-    },
-    {
-      "title": "Hey",
-      "content": "",
-      "id": 5
-    },
-    {
-      "title": "Again",
-      "content": "",
-      "id": 6
     }
   ]
 }
