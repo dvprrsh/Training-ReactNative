@@ -16,7 +16,7 @@ router.post('/signup', async (req, res) => {
   } catch (e) {
     return res.status(422).send(e.message);
   }
-  res.send('Made a post request');
+  res.send('Made a sign up request');
 });
 
 router.post('/signin', async (req, res) => {

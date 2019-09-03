@@ -10,6 +10,9 @@ import {
   TrackDetailScreen,
   TrackListScreen
 } from './src/screens';
+import { Provider as AuthProvider } from './src/contexts/AuthContext';
+
+import { setNavigator } from './src/services';
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -39,4 +42,10 @@ const switchNavigator = createSwitchNavigator(
   }
 );
 
-export default createAppContainer(switchNavigator);
+const App = createAppContainer(switchNavigator);
+
+export default () => (
+  <AuthProvider>
+    <App ref={navigator => setNavigator(navigator)} />
+  </AuthProvider>
+);

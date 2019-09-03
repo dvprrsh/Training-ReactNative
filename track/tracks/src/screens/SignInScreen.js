@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { LoginForm } from '../components';
+import { LogInForm } from '../components';
 
-export const SignInScreen = () => <LoginForm toDisplay="Sign In" />;
+export const SignInScreen = ({ navigation }) => (
+  <LogInForm textToDisplay="Sign In" navigationCallback={() => navigation.navigate('SignUp')} />
+);
 
-const styles = StyleSheet.create({});
+SignInScreen.navigationOptions = () => ({
+  header: null
+});
