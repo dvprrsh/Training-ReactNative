@@ -7,11 +7,12 @@ import {
   LoadingScreen,
   SignInScreen,
   SignUpScreen,
-  TrackCreateScreen,
   TrackDetailScreen,
   TrackListScreen
 } from './src/screens';
+import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import { Provider as AuthProvider } from './src/contexts/AuthContext';
+import { Provider as LocationProvider } from './src/contexts/LocationContext';
 
 import { setNavigator } from './src/services';
 
@@ -47,7 +48,9 @@ const switchNavigator = createSwitchNavigator(
 const App = createAppContainer(switchNavigator);
 
 export default () => (
-  <AuthProvider>
-    <App ref={navigator => setNavigator(navigator)} />
-  </AuthProvider>
+  <LocationProvider>
+    <AuthProvider>
+      <App ref={navigator => setNavigator(navigator)} />
+    </AuthProvider>
+  </LocationProvider>
 );
