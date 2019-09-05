@@ -4,9 +4,10 @@ import { Text, Input, Button } from 'react-native-elements';
 import { Spacer } from './Spacer';
 
 import { Context as AuthContext } from '../contexts/AuthContext';
+import { NavigationEvents } from 'react-navigation';
 
 export const LogInForm = ({ textToDisplay, navigationCallback }) => {
-  const { state, signUp, signIn } = useContext(AuthContext);
+  const { state, signUp, signIn, clearErrorMessage } = useContext(AuthContext);
   const { errorMessage } = state;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,6 +16,7 @@ export const LogInForm = ({ textToDisplay, navigationCallback }) => {
 
   return (
     <View style={styles.container}>
+      <NavigationEvents onWillBlur={clearErrorMessage} />
       <Text style={styles.header} h4>
         {textToDisplay} for Tracker
       </Text>

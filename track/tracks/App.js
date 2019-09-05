@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import {
   AccountScreen,
+  LoadingScreen,
   SignInScreen,
   SignUpScreen,
   TrackCreateScreen,
@@ -16,6 +17,7 @@ import { setNavigator } from './src/services';
 
 const switchNavigator = createSwitchNavigator(
   {
+    Loading: LoadingScreen,
     logInFlow: createStackNavigator(
       {
         SignIn: SignInScreen,
@@ -35,7 +37,7 @@ const switchNavigator = createSwitchNavigator(
     })
   },
   {
-    initialRouteName: 'logInFlow',
+    initialRouteName: 'Loading',
     defaultNavigationOptions: {
       title: 'Blog List'
     }
