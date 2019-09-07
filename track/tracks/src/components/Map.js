@@ -6,18 +6,12 @@ import { Context as LocationContext } from '../contexts/LocationContext';
 
 export const Map = () => {
   const { state } = useContext(LocationContext);
-  const { currentLocation } = state;
+  const { currentLocation, locations } = state;
 
   return currentLocation ? (
     <MapView
       style={styles.map}
       initialRegion={{
-        latitude: currentLocation.coords.latitude,
-        latitudeDelta: 0.01,
-        longitude: currentLocation.coords.longitude,
-        longitudeDelta: 0.01
-      }}
-      region={{
         latitude: currentLocation.coords.latitude,
         latitudeDelta: 0.01,
         longitude: currentLocation.coords.longitude,
@@ -30,6 +24,9 @@ export const Map = () => {
         fillColor="rgba(66, 133, 244, 0.4)"
         strokeColor="rgba(66, 133, 244, 1.0)"
       />
+      {locations ? (
+        <Polyline coordinates={locations.map(location => location.coords)} strokeWidth={1} />
+      ) : null}
     </MapView>
   ) : (
     <View style={styles.spinnerView}>

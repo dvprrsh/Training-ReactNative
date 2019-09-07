@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
-
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FontAwesome } from '@expo/vector-icons';
 import { Context as authContext } from '../contexts/AuthContext';
 
 export const AccountScreen = () => {
@@ -18,7 +19,8 @@ export const AccountScreen = () => {
 };
 
 AccountScreen.navigationOptions = () => ({
-  header: true
+  header: true,
+  tabBarIcon: <FontAwesome name="gear" size={20} />
 });
 
 const styles = StyleSheet.create({});

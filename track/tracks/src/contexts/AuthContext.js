@@ -42,7 +42,6 @@ const signIn = dispatch => async ({ email, password }) => {
     dispatch({ type: 'sign_in', payload: response.data.token });
     navigate('TrackList');
   } catch (e) {
-    console.log(e);
     dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });
   }
 };

@@ -2,6 +2,8 @@ import React from 'react';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FontAwesome } from '@expo/vector-icons';
 import {
   AccountScreen,
   LoadingScreen,
@@ -13,8 +15,18 @@ import {
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import { Provider as AuthProvider } from './src/contexts/AuthContext';
 import { Provider as LocationProvider } from './src/contexts/LocationContext';
-
+import { Provider as TrackProvider } from './src/contexts/TrackContext';
 import { setNavigator } from './src/services';
+
+const trackFlow = createStackNavigator({
+  TrackList: TrackListScreen,
+  TrackDetail: TrackDetailScreen
+});
+
+trackFlow.navigationOptions = {
+  title: 'Tracks',
+  tabBarIcon: <FontAwesome name="th-list" size={20} />
+};
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -29,10 +41,7 @@ const switchNavigator = createSwitchNavigator(
       }
     ),
     mainFlow: createBottomTabNavigator({
-      trackFlow: createStackNavigator({
-        TrackList: TrackListScreen,
-        TrackDetail: TrackDetailScreen
-      }),
+      trackFlow,
       TrackCreate: TrackCreateScreen,
       Account: AccountScreen
     })
@@ -48,9 +57,11 @@ const switchNavigator = createSwitchNavigator(
 const App = createAppContainer(switchNavigator);
 
 export default () => (
-  <LocationProvider>
-    <AuthProvider>
-      <App ref={navigator => setNavigator(navigator)} />
-    </AuthProvider>
-  </LocationProvider>
+  <AuthProvider>
+    <LocationProvider>
+      <TrackProvider>
+        <App ref={navigator => setNavigator(navigator)} />
+      </TrackProvider>
+    </LocationProvider>
+  </AuthProvider>
 );
